@@ -17,8 +17,10 @@ Route::get('/', function () {
 
 
 
-Route::get('/dashboard', 'UserController@getDashboard');
+Route::get('/dashboard', ['middleware' => 'auth' , 'uses'=> 'PostController@getDashboard']);
 
 Route::post('/signup','UserController@postSignUp');
 
 Route::post('/signin','UserController@postSignIn');
+
+Route::post('/createpost','PostController@postCreatePost');
