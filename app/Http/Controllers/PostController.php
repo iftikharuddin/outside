@@ -25,5 +25,28 @@ class PostController extends Controller
         }
         return redirect('dashboard')->with(['message' => $message]);
     }
-
+	
+	public function postEditPost(Request $request)
+    {
+        $this->validate($request, [
+            'body' => 'required'
+        ]);
+        $post = Post::find($request['postId']);
+        if (Auth::user() != $post->user) {
+            return redirect()->back();
+        }
+        $post->body = $request['body'];
+        $post->update();
+        return response()->json(['new_body' => $post->body], 200);
+    }
+	
+	public function getDeletePost($post_id)
+    {
+        $post = Post::where('id', $post_id)->first();
+        if (Auth::user() != $post->user) {
+            return redirect()->back();
+        }
+        $post->delete();
+        return redirect('dashboard')->with(['message' => 'Successfully deleted!']);
+    }
 }

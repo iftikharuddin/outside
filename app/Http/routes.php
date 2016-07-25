@@ -19,8 +19,16 @@ Route::get('/', function () {
 
 Route::get('/dashboard', ['middleware' => 'auth' , 'uses'=> 'PostController@getDashboard']);
 
-Route::post('/signup','UserController@postSignUp');
+Route::post('/signup', 'UserController@postSignUp');
 
-Route::post('/signin','UserController@postSignIn');
+Route::post('/signin', 'UserController@postSignIn');
+Route::get('/logout', 'UserController@getLogout');
 
-Route::post('/createpost','PostController@postCreatePost');
+Route::post('/createpost', ['middleware' => 'auth' , 'uses'=> 'PostController@postCreatePost']);
+
+Route::get('/deletepost/{post_id}', ['middleware' => 'auth' , 'uses'=> 'PostController@getDeletePost']);
+
+Route::post('/edit', [
+    'uses' => 'PostController@postEditPost',
+    'as' => 'edit'
+]);
