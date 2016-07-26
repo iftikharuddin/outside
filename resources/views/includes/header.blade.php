@@ -37,7 +37,7 @@
         <button type="submit" class="btn btn-default">Submit</button>
       </form>
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="#">Link</a></li>
+        <li><a href="{{ url('account') }}">Account</a></li>
         <li><a href="{{ url('logout') }}">Logout</a></li>
         
       </ul>

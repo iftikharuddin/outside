@@ -9,17 +9,17 @@ class User extends Model implements Authenticatable
 	protected $fillable = [
 	   'email',
 	   'first_name',
-	   'password'
+	   'password',
+	   'image'
    	];
 	
-    public function posts()
-    {
+    public function posts(){
         return $this->hasMany('App\Post');
     }
-    public function likes()
-    {
-        return $this->hasMany('App\Like');
-    }
+	
+    public function likes(){
+		return $this->hasMany('App\Like');
+	}
 }
 	
 	

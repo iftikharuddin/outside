@@ -22,6 +22,12 @@
                     <label for="password">Your Password</label>
                     <input class="form-control" type="password" name="password" id="password" value="{{ Request::old('password') }}">
                 </div>
+                <div class="form-group">
+                            <label for="image">Upload Image</label>
+                            <div class="col-md-6">
+								{!! Form::file('image', null) !!}
+                            </div>
+                        </div>
                 <button type="submit" class="btn btn-primary">Submit</button>
                 <input type="hidden" name="_token" value="{{ Session::token() }}">
             </form>

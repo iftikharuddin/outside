@@ -22,6 +22,11 @@ class UserController extends Controller
 		
 		$user = $request->all();
 		$user['password'] = bcrypt($request->password);
+		if($file = $request->file('image')){
+			$name = time() . $file->getClientOriginalName();
+			$file->move('images', $name);
+			$user->image = $name;
+		}
 		User::create($user);
 		Session::flash('user_created','The user has been Created');
 		return redirect('dashboard');
@@ -46,6 +51,27 @@ class UserController extends Controller
         Auth::logout();
         return redirect('/')->with(['message' => 'You are logged out!']);
     }
-	
+	public function getAccount()
+    {
+        return view('account', ['user' => Auth::user()]);
+    }
+    public function postSaveAccount(Request $request)
+    {
+        $this->validate($request, [
+           'first_name' => 'required|max:120'
+        ]);
+        $user = Auth::user();
+        $old_name = $user->first_name;
+        $user->first_name = $request['first_name'];
+        
+        if($file = $request->file('image')){
+			$name = time() . $file->getClientOriginalName();
+			$file->move('images', $name);
+			$user->image = $name;
+		}
+		$user->update();
+        return redirect('account');
+    }
+    
     
 }

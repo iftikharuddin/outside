@@ -32,3 +32,16 @@ Route::post('/edit', [
     'uses' => 'PostController@postEditPost',
     'as' => 'edit'
 ]);
+
+Route::get('/account', [
+    'uses' => 'UserController@getAccount'
+]);
+
+Route::post('/upateaccount', [
+    'uses' => 'UserController@postSaveAccount'
+]);
+
+
+Route::post('/like', [
+    'uses' => 'PostController@postLikePost'
+]);
