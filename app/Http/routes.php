@@ -15,33 +15,33 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-
-
-Route::get('/dashboard', ['middleware' => 'auth' , 'uses'=> 'PostController@getDashboard']);
-
 Route::post('/signup', 'UserController@postSignUp');
 
 Route::post('/signin', 'UserController@postSignIn');
-Route::get('/logout', 'UserController@getLogout');
 
-Route::post('/createpost', ['middleware' => 'auth' , 'uses'=> 'PostController@postCreatePost']);
-
-Route::get('/deletepost/{post_id}', ['middleware' => 'auth' , 'uses'=> 'PostController@getDeletePost']);
-
-Route::post('/edit', [
-    'uses' => 'PostController@postEditPost',
-    'as' => 'edit'
-]);
-
-Route::get('/account', [
+Route::group(['middleware' => 'auth'], function(){
+	Route::get('/dashboard', ['uses'=> 'PostController@getDashboard']);
+	Route::post('/upateaccount', [
+		'uses' => 'UserController@postSaveAccount'
+		
+	]);
+	Route::get('/account', [
     'uses' => 'UserController@getAccount'
-]);
+	
+	]);
+	Route::post('/like', [
+    	'uses' => 'PostController@postLikePost'
+	]);
+	
+	Route::get('/logout', 'UserController@getLogout');
 
-Route::post('/upateaccount', [
-    'uses' => 'UserController@postSaveAccount'
-]);
+	Route::post('/createpost', [ 'uses'=> 'PostController@postCreatePost']);
 
+	Route::get('/deletepost/{post_id}', ['uses'=> 'PostController@getDeletePost']);
 
-Route::post('/like', [
-    'uses' => 'PostController@postLikePost'
-]);
+	Route::post('/edit', [
+		'uses' => 'PostController@postEditPost',
+		'as' => 'edit'
+		
+	]);
+});

@@ -9,7 +9,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#">Brand</a>
+      <a class="navbar-brand" href="{{ url('/dashboard') }}">Brand</a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
@@ -37,8 +37,10 @@
         <button type="submit" class="btn btn-default">Submit</button>
       </form>
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="{{ url('account') }}">Account</a></li>
-        <li><a href="{{ url('logout') }}">Logout</a></li>
+        @if(Auth::check())
+      	 	<li><a href="{{ url('account') }}">Account</a></li>
+       	 	<li><a href="{{ url('logout') }}">Logout</a></li>
+        @endif
         
       </ul>
     </div><!-- /.navbar-collapse -->
