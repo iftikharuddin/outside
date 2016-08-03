@@ -14,20 +14,31 @@
                     <label for="email">Your E-Mail</label>
                     <input class="form-control" type="text" name="email" id="email" value="{{ Request::old('email') }}">
                 </div>
-                <div class="form-group {{ $errors->has('first_name') ? 'has-error' : '' }}">
-                    <label for="first_name">Your First Name</label>
-                    <input class="form-control" type="text" name="first_name" id="first_name" value="{{ Request::old('first_name') }}">
+                <div class="form-group {{ $errors->has('user_name') ? 'has-error' : '' }}">
+                    <label for="first_name">User Name</label>
+                    <input class="form-control" type="text" name="user_name" id="user_name" value="{{ Request::old('user_name') }}">
                 </div>
+                
                 <div class="form-group {{ $errors->has('password') ? 'has-error' : '' }}">
                     <label for="password">Your Password</label>
                     <input class="form-control" type="password" name="password" id="password" value="{{ Request::old('password') }}">
                 </div>
-                <div class="form-group">
-                            <label for="image">Upload Image</label>
-                            <div class="col-md-6">
-								{!! Form::file('image', null) !!}
-                            </div>
-                        </div>
+                
+                <div class="form-group {{ $errors->has('first_name') ? 'has-error' : '' }}">
+                    <label for="password">First Name</label>
+                    <input class="form-control" type="text" name="first_name" id="first_name" value="{{ Request::old('first_name') }}">
+                </div>
+                
+                 <div class="form-group {{ $errors->has('last_name') ? 'has-error' : '' }}">
+                    <label for="password">Last Name</label>
+                    <input class="form-control" type="text" name="last_name" id="last_name" value="{{ Request::old('last_name') }}">
+                </div>
+                
+                <div class="form-group {{ $errors->has('location') ? 'has-error' : '' }}">
+                    <label for="password">Location</label>
+                    <input class="form-control" type="text" name="location" id="location" value="{{ Request::old('location') }}">
+                </div>
+              
                 <button type="submit" class="btn btn-primary">Submit</button>
                 <input type="hidden" name="_token" value="{{ Session::token() }}">
             </form>

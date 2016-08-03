@@ -17,16 +17,12 @@ class UserController extends Controller
 		$this->validate($request, [
             'email' => 'required|email|unique:users',
             'first_name' => 'required|max:120',
+            'last_name' => 'required|max:120',
             'password' => 'required|min:4'
         ]);
 		
 		$user = $request->all();
 		$user['password'] = bcrypt($request->password);
-		if($file = $request->file('image')){
-			$name = time() . $file->getClientOriginalName();
-			$file->move('images', $name);
-			$user->image = $name;
-		}
 		User::create($user);
 		Session::flash('user_created','The user has been Created');
 		return redirect('dashboard');
