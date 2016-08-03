@@ -44,4 +44,6 @@ Route::group(['middleware' => 'auth'], function(){
 		'as' => 'edit'
 		
 	]);
+	
+	Route::get('/search', 'SearchController@getResults');
 });
