@@ -270,6 +270,7 @@ class ComposerStaticInitd27bca6fca341f1829266820619dbddd
     );
 
     public static $classMap = array (
+        'CreateFriendsTable' => __DIR__ . '/../..' . '/database/migrations/2016_08_04_094406_create_friends_table.php',
         'CreateLikesTable' => __DIR__ . '/../..' . '/database/migrations/2016_07_26_085402_create_likes_table.php',
         'CreatePostsTable' => __DIR__ . '/../..' . '/database/migrations/2016_07_25_132911_create_posts_table.php',
         'CreateUsersTable' => __DIR__ . '/../..' . '/database/migrations/2016_07_25_054157_create_users_table.php',
