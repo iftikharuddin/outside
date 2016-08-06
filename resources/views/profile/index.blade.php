@@ -1,11 +1,12 @@
 @extends('layouts.master')
 
 @section('title')
-    Search
+    Profile
 @endsection
 
 @section('content')
 	<div class="row">
+		
 		<div class="col-lg-5">
 			<!-- User information and status -->
 			@include('includes.userblock')
@@ -19,7 +20,7 @@
 				<p>You and {{ $user->username }} are friends</p>
 				
 			@else
-				<a href="" class="btn btn-primary"> Add as Friend</a>
+				<a href="{{ url('friends/add', $user->username )}}" class="btn btn-primary"> Add as Friend</a>
 			@endif
 			<!-- Friend , Friend request -->
 			<h4>{{ $user->username }}'s friends.</h4>

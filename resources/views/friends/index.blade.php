@@ -6,6 +6,9 @@
 
 @section('content')
 	<div class="row">
+			@if(Session::has('info'))
+				<div class="alert alert-info" role="alert">{{ session('info') }}</div>
+			@endif
 			<div class="col-lg-6">
 				<h3>Your friends</h3>
 					@if(!$friends->count())
