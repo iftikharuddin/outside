@@ -50,5 +50,6 @@ Route::group(['middleware' => 'auth'], function(){
 	Route::get('/user/{username}', 'ProfileController@getProfile');
 	Route::get('/friends', 'FriendController@getIndex');
 	Route::get('/friends/add/{username}', 'FriendController@getAdd');
+	Route::get('/friends/accept/{username}', 'FriendController@getAccept');
 	
 });
