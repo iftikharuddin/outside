@@ -25,7 +25,7 @@ class UserController extends Controller
 		$user['password'] = bcrypt($request->password);
 		User::create($user);
 		Session::flash('user_created','The user has been Created');
-		return redirect('dashboard');
+		return redirect('/');
 	}
 	
 	public function postSignIn(Request $request)
@@ -37,7 +37,7 @@ class UserController extends Controller
         if (Auth::attempt(['email' => $request['email'], 'password' => $request['password']])) {
 			$user = "Welcome ".Auth::user()->first_name;
 			Session::flash('user_signin', $user);
-            return redirect('dashboard');
+            return redirect('/');
         }
         return redirect()->back();
     }

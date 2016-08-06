@@ -14,15 +14,15 @@
 Route::get('/', function(){
 	return view('welcome');
 });
-
+Route::get('/', [
+    'uses' => 'PostController@getDashboard'
+	
+	]);
 Route::post('/signup', 'UserController@postSignUp');
 
 Route::post('/signin', 'UserController@postSignIn');
 Route::group(['middleware' => 'auth'], function(){
-	Route::get('/dashboard', [
-    'uses' => 'PostController@getDashboard'
 	
-	]);
 	Route::post('/upateaccount', [
 		'uses' => 'UserController@postSaveAccount'
 		

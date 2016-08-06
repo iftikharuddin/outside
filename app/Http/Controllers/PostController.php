@@ -9,8 +9,12 @@ class PostController extends Controller
 {
     public function getDashboard()
     {
-        $posts = Post::orderBy('created_at', 'desc')->get();
-        return view('dashboard', compact('posts'));
+		if(Auth::check()){
+			$posts = Post::orderBy('created_at', 'desc')->get();
+			return view('timeline.index', compact('posts'));
+		}
+		return view('welcome');
+        
     }
     public function postCreatePost(Request $request)
     {

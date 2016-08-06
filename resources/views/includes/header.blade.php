@@ -9,13 +9,13 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="{{ url('/dashboard') }}">Outside</a>
+      <a class="navbar-brand" href="{{ url('/') }}">Outside</a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li class="active"><a href="{{ url('dashboard') }}">News Feed <span class="sr-only">(current)</span></a></li>
+        <li class="active"><a href="{{ url('/') }}">News Feed <span class="sr-only">(current)</span></a></li>
         <li><a href="{{ url('friends') }}">Friends</a></li>
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
