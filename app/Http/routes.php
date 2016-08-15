@@ -38,6 +38,7 @@ Route::group(['middleware' => 'auth'], function(){
 	Route::get('/logout', 'UserController@getLogout');
 
 	Route::post('/createpost', [ 'uses'=> 'PostController@postCreatePost']);
+	Route::post('/createpost/{statusId}', [ 'uses'=> 'PostController@postReply']);
 
 	Route::get('/deletepost/{post_id}', ['uses'=> 'PostController@getDeletePost']);
 

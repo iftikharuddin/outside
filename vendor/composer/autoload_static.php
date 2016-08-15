@@ -273,6 +273,7 @@ class ComposerStaticInitd27bca6fca341f1829266820619dbddd
         'CreateFriendsTable' => __DIR__ . '/../..' . '/database/migrations/2016_08_04_094406_create_friends_table.php',
         'CreateLikesTable' => __DIR__ . '/../..' . '/database/migrations/2016_07_26_085402_create_likes_table.php',
         'CreatePostsTable' => __DIR__ . '/../..' . '/database/migrations/2016_07_25_132911_create_posts_table.php',
+        'CreateRepliesTable' => __DIR__ . '/../..' . '/database/migrations/2016_08_10_092836_create_replies_table.php',
         'CreateUsersTable' => __DIR__ . '/../..' . '/database/migrations/2016_07_25_054157_create_users_table.php',
         'DatabaseSeeder' => __DIR__ . '/../..' . '/database/seeds/DatabaseSeeder.php',
         'File_Iterator' => __DIR__ . '/..' . '/phpunit/php-file-iterator/src/Iterator.php',

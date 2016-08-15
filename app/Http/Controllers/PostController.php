@@ -9,8 +9,18 @@ class PostController extends Controller
 {
     public function getDashboard()
     {
+		//if(Auth::check()){
+		//	$posts = Post::notReply()->orderBy('created_at', 'desc')->get();
+		//	return view('timeline.index', compact('posts'));
+		//}
+		
 		if(Auth::check()){
-			$posts = Post::orderBy('created_at', 'desc')->get();
+			$posts = Post::notReply()->where(function($query){
+				return $query->where('user_id', Auth::user()
+				->id)->orWhereIn('user_id', Auth::user()->friends()->lists('id'));	
+				})->with('replies')
+				->orderBy('created_at', 'desc')
+				->get();
 			return view('timeline.index', compact('posts'));
 		}
 		return view('welcome');
@@ -27,7 +37,7 @@ class PostController extends Controller
         if ($request->user()->posts()->save($post)) {
             $message = 'Post successfully created!';
         }
-        return redirect('dashboard')->with(['message' => $message]);
+        return redirect('/')->with(['message' => $message]);
     }
 	
 	public function postEditPost(Request $request)
@@ -51,7 +61,7 @@ class PostController extends Controller
             return redirect()->back();
         }
         $post->delete();
-        return redirect('dashboard')->with(['message' => 'Successfully deleted!']);
+        return redirect('/')->with(['message' => 'Successfully deleted!']);
     }
 	
 	public function postLikePost(Request $request)
@@ -85,4 +95,29 @@ class PostController extends Controller
         }
         return null;
     }
+	public function postReply(Request $request, $statusId){
+		$this->validate($request, [
+			"reply-{$statusId}" => 'required|max:1000',
+		],
+		[
+			'required' => 'The reply body is required'
+		]
+		);
+		
+		$post = Post::notReply()->find($statusId);
+		if(!$post){
+			return redirect('/');
+		}
+		
+		if(!Auth::user()->isFriendsWith($post->user) && Auth::user()->id !== $post->user->id){
+			return redirect('/');
+		}
+		
+		$reply = Post::create([
+			'body' => $request->input("reply-{$statusId}"),
+		]);
+		$post->user()->associate(Auth::user());
+		$post->replies()->save($reply);
+		return redirect()->back();
+	}
 }

@@ -18,24 +18,42 @@
         <div class="col-md-6 col-md-offset-3">
             <header><h3>What other people say...</h3></header>
                 @foreach($posts as $post)
-                <article class="post" data-postid="{{ $post->id }}">
-                    <p>{{ $post->body }}</p>
-                    <div class="info">
-                        Posted by {{ $post->user->first_name }} {{ $post->created_at }}
-                    </div>
-                    <div class="interaction">
-                        <a href="#" class="like">{{ Auth::user()->likes()->where('post_id', $post->id)->first() ? Auth::user()->likes()->where('post_id', $post->id)->first()->like == 1 ? 'You like this post' : 'Like' : 'Like'  }}</a> |
-                        <a href="#" class="like">{{ Auth::user()->likes()->where('post_id', $post->id)->first() ? Auth::user()->likes()->where('post_id', $post->id)->first()->like == 0 ? 'You don\'t like this post' : 'Dislike' : 'Dislike'  }}</a>
-                        
-                         @if(Auth::user() == $post->user)   
-                            <a href="#" class="edit">Edit</a> |
-                            <a href="{{ url('deletepost', $post->id) }}">Delete</a>
-                         @endif
-                        
-                    </div>
+				
+                <article class="post media" data-postid="{{ $post->id }}">
+                    <a class="pull-left" href="{{ url('user', $post->user->username) }}">
+						<img class="media-object" alt="" src="{{ $post->user->getAvatarUrl() }}">
+					</a>
+					<div class="media-body">
+                      <h4 class="media-heading"><a href="{{ url('user', $post->user->username) }}"> {{ $post->user->username }}</a></h4>
+						<p>{{ $post->body }}</p>
+						<ul class="list-inline">
+							<li>{{ $post->created_at->diffForHumans() }}</li>
+							<li><a href="#">Like</a></li>
+							<li>10 likes</li>
+						</ul>
+						@foreach($post->replies as $reply)
+							<li>{{ $reply->body}} </li>
+						@endforeach
+						
+					</div>
+				
+					<form role="form" action="{{ url('createpost',  $post->id )}}" method="post">
+							<div class="form-group{{ $errors->has("reply-{$post->id}") ? ' has-error': '' }}">
+								<textarea name="reply-{{ $post->id }}" class="form-control" rows="2" placeholder="Reply to this status"></textarea>
+								@if($errors->has("reply-{$post->id}"))
+									<span class="help-block">{{ $errors->first("reply-{$post->id}") }} </span>
+								@endif
+							</div>
+							<input type="submit" value="Reply" class="btn btn-default btn-sm">
+							<input type="hidden" name="_token" value="{{ Session::token() }}">
+					</form>
+					
                 </article>
+				
           		@endforeach
+				
         </div>
+		
     </section>
     
 	<div class="modal fade" tabindex="-1" role="dialog" id="edit-modal">

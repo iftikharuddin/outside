@@ -9,6 +9,7 @@ return array(
     'CreateFriendsTable' => $baseDir . '/database/migrations/2016_08_04_094406_create_friends_table.php',
     'CreateLikesTable' => $baseDir . '/database/migrations/2016_07_26_085402_create_likes_table.php',
     'CreatePostsTable' => $baseDir . '/database/migrations/2016_07_25_132911_create_posts_table.php',
+    'CreateRepliesTable' => $baseDir . '/database/migrations/2016_08_10_092836_create_replies_table.php',
     'CreateUsersTable' => $baseDir . '/database/migrations/2016_07_25_054157_create_users_table.php',
     'DatabaseSeeder' => $baseDir . '/database/seeds/DatabaseSeeder.php',
     'File_Iterator' => $vendorDir . '/phpunit/php-file-iterator/src/Iterator.php',
