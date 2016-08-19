@@ -13,11 +13,11 @@ class User extends Model implements Authenticatable
 	   'image'
    	];
 	
-    public function posts(){
-        return $this->hasMany('App\Post');
-    }
+	 public function posts(){
+	         return $this->hasMany('App\Post');
+	 }
 	
-    public function likes(){
+	 public function likes(){
 		return $this->hasMany('App\Like');
 	}
 	
