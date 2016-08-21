@@ -16,12 +16,13 @@ class UserController extends Controller
     public function postSignUp(Request $request){
 		$this->validate($request, [
             'email' => 'required|email|unique:users',
-            'first_name' => 'required|max:120',
+            'username' => 'required',
             'last_name' => 'required|max:120',
             'password' => 'required|min:4'
         ]);
 		
 		$user = $request->all();
+		
 		$user['password'] = bcrypt($request->password);
 		User::create($user);
 		Session::flash('user_created','The user has been Created');

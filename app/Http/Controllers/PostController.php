@@ -114,9 +114,11 @@ class PostController extends Controller
 		}
 		
 		$reply = Post::create([
-			'body' => $request->input("reply-{$statusId}"),
+			'body' => $request->input("reply-{$statusId}")
 		]);
-		$post->user()->associate(Auth::user());
+		
+		$reply->user()->associate(Auth::user());
+		
 		$post->replies()->save($reply);
 		return redirect()->back();
 	}

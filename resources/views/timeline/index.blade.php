@@ -32,7 +32,21 @@
 							<li>10 likes</li>
 						</ul>
 						@foreach($post->replies as $reply)
-							<li>{{ $reply->body}} </li>
+							
+							<div class="media">
+								<a class="pull-left" href="#">
+									<img class="media-object" alt="" src="{{ $reply->user->getAvatarUrl() }}">
+								</a>
+								<div class="media-body">
+								<h5 class="media-heading"> {{ $reply->user->username }} </h4>
+									<p>{{ $reply->body }}</p>
+									<ul class="list-inline">
+										<li>{{ $reply->created_at->diffForHumans() }}</li>
+										<li><a href="#">Like</a></li>
+										<li>10 likes</li>
+									</ul>
+								</div>
+							</div>
 						@endforeach
 						
 					</div>

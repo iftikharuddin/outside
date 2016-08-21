@@ -16,7 +16,7 @@
                 </div>
                 <div class="form-group {{ $errors->has('user_name') ? 'has-error' : '' }}">
                     <label for="first_name">User Name</label>
-                    <input class="form-control" type="text" name="user_name" id="user_name" value="{{ Request::old('user_name') }}">
+                    <input class="form-control" type="text" name="username" id="username" value="{{ Request::old('username') }}">
                 </div>
                 
                 <div class="form-group {{ $errors->has('password') ? 'has-error' : '' }}">

@@ -8,7 +8,10 @@ class User extends Model implements Authenticatable
 	
 	protected $fillable = [
 	   'email',
+	   'username',
 	   'first_name',
+	   'last_name',
+	   'location_name',
 	   'password',
 	   'image'
    	];
